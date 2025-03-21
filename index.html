@@ -1,0 +1,524 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>How to integreate Zoom App and Team Chat into a Nextjs App</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14" ga4id=""></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  codelab-ga4id=""
+                  id="how-to-integreate-a-zoomapp-nextjs"
+                  title="How to integreate Zoom App and Team Chat into a Nextjs App"
+                  environment="web"
+                  feedback-link="https://devforum.zoom.us/c/zoom-apps">
+    
+      <google-codelab-step label="Before you begin" duration="0">
+        <p>In this codelab, you&#39;ll learn how to integrate a Zoom Team Chatbot into an existing Zoom App using a Next.js web app for task management.</p>
+<p class="image-container"><img alt="alt-text-here" src="img/86caacb02af60784.png"></p>
+<p>The completed web app showcases powerful features that demonstrate how the Zoom App SDK can extend your web app beyond the browser. These features include the following:</p>
+<ul>
+<li><strong>Installation and Authorization</strong>: Seamlessly install and authorize the Zoom App SDK to enable secure integration and unlock full platform capabilities.</li>
+<li><strong>Message Delivery Methods</strong>: Ensure reliable communication using Zoom Team Chat and ChatBot REST APIs, along with the Zoom App SendMessage method.</li>
+<li><strong>Webview Integration</strong>: Launch engaging webviews using button interactions and shortcuts, with support for interactive dialogs and preview cards.</li>
+<li><strong>Interactive Events</strong>: Trigger webhook actions via button clicks and manage deep link authorization through image interactions in Team Chat.</li>
+<li><strong>Chat Commands and Features</strong>: Leverage slash commands and URL unfurling to streamline interactions and enrich content display from verified domains.</li>
+</ul>
+<h2 is-upgraded>Prerequisites</h2>
+<ul>
+<li>A Zoom Developer account</li>
+<li>A Supabase Account</li>
+<li>Knowledge of Next.js and JavaScript</li>
+</ul>
+<h2 class="checklist" is-upgraded>What you&#39;ll Learn</h2>
+<ul class="checklist">
+<li>✓ How to get chatbot token</li>
+<li>✓ How to send chatbot message to Zoom Client</li>
+<li>   </li>
+<li>✓ How to deep link to Zoom App</li>
+</ul>
+<h2 is-upgraded>What you&#39;ll need</h2>
+<ul>
+<li>Git</li>
+<li>A recent stable version of Node.js</li>
+<li>A browser of your choice, such as Google Chrome</li>
+<li>A development environment with a code editor and terminal</li>
+<li>A Zoom Developer Account for the creation and management of your Zoom App SDK</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Set up your development environment and GitHub repository" duration="3">
+        <p>This codelab provides the app&#39;s starter codebase.</p>
+<h2 is-upgraded>Create a GitHub repository</h2>
+<p>The codelab source can be found at https://github.com/zoom/task-manager-sample. The repository contains a branch for each step of development process. However, this codelab uses only the nextjs-start directory. Take note of the following directories:</p>
+<pre><code language="language-bash" class="language-bash">* `task-manager-sample-start`: contains the starter code upon which you build.
+* `task-manager-sample-end`: contains the solution code for the finished web app.
+</code></pre>
+<p>Copy the nextjs-start folder into your own repository:</p>
+<ol type="1">
+<li>Using a terminal, create a new folder on your computer and change into the new directory:</li>
+</ol>
+<pre><code language="language-bash" class="language-bash">mkdir codelab-zoomapp-taskmanager-web
+
+cd codelab-zoomapp-taskmanager-web
+</code></pre>
+<ol type="1" start="2">
+<li>Track changes locally with git:</li>
+</ol>
+<pre><code language="language-bash" class="language-bash">rm -rf .git
+
+git init
+
+git commit -a -m &#34;codelab starting point&#34;
+
+git branch -M main
+</code></pre>
+<ol type="1" start="3">
+<li>Create a new GitHub repository: https://github.com/new. Name it anything you&#39;d like.</li>
+<li>Copy the new URL that GitHub creates for you. It will look like one of the following:</li>
+</ol>
+<ul>
+<li>https://github.com/&lt;USER_NAME&gt;/&lt;REPOSITORY_NAME&gt;.git or</li>
+<li>git@github.com:&lt;USER_NAME&gt;/&lt;REPOSITORY_NAME&gt;.git</li>
+</ul>
+<ol type="1" start="5">
+<li>Push local changes to your new GitHub repository by running the following command. Substitute your actual repository URL for the &lt;REPOSITORY_URL&gt; placeholder.</li>
+</ol>
+<pre><code language="language-bash" class="language-bash">git remote add origin &lt;REPOSITORY_URL&gt;
+
+git push -u origin main
+</code></pre>
+<ol type="1" start="6">
+<li>You should now see the starter code in your GitHub repository.</li>
+</ol>
+<h2 is-upgraded>Install or update the Supabase CLI</h2>
+<p>If you see a lower version or you don&#39;t have the Supabase CLI installed, run the install command:</p>
+<pre><code language="language-bash" class="language-bash">brew install supabase/tap/supabase
+
+</code></pre>
+<h2 is-upgraded>Running Supabase locally</h2>
+<p>Inside the folder where you want to create your project, run:</p>
+<pre><code language="language-bash" class="language-bash">supabase init
+
+</code></pre>
+<p>This will create a new supabase folder. It&#39;s safe to commit this folder to your version control system.</p>
+<p>Now, to start the Supabase stack, run:</p>
+<pre><code>Inside the folder where you want to create your project, run:
+```bash
+
+supabase start
+
+</code></pre>
+<p>This takes time on your first run because the CLI needs to download the Docker images to your local machine. The CLI includes the entire Supabase toolset, and a few additional images that are useful for local development (like a local SMTP server and a database diff tool).</p>
+<h2 is-upgraded>Log in to Supabase</h2>
+<ol type="1">
+<li>Log in to the Supabase CLI and connect your Supabase account using your personal access token:</li>
+</ol>
+<pre><code language="language-bash" class="language-bash">supabase login
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Set up your Supabase project" duration="5">
+        <p>In this section, you&#39;ll set up a Supabase project and associate a NextJs web app with it. You&#39;ll also set up the Supabase services used by the sample web app.</p>
+<h2 is-upgraded>Create a Supabase project</h2>
+<p>**1. Sign up **</p>
+<ul>
+<li>Visit supabase.com and sign up with your email or GitHub account. Once you have an account, log in to access your dashboard.</li>
+</ul>
+<p><strong>2. Create a new Project</strong></p>
+<ul>
+<li>In the Supabase dashboard, click on the New Project button. This initiates the project creation process.</li>
+</ul>
+<p><strong>3. Configure project settings</strong></p>
+<ul>
+<li>Project Name: Enter a name for your project.</li>
+<li>Database Password: Set a strong password for the Postgres database that Supabase provisions.</li>
+<li>Region: Choose the server region closest to your user base for optimal performance.</li>
+</ul>
+<p><strong>4. Provisioning the Database</strong></p>
+<p>After submitting the details, Supabase will create a new Postgres database instance. This process might take a couple of minutes. You&#39;ll see a progress indicator in your dashboard.</p>
+<p><strong>5. Access project details</strong></p>
+<p>Once the project is set up, navigate to the project&#39;s settings where you can find:</p>
+<ul>
+<li>API Keys: Essential for authenticating requests from your client applications.</li>
+<li>Connection Strings: Use these details to connect your application to the database.</li>
+<li>Project URL: The base URL for accessing your project&#39;s API.</li>
+</ul>
+<h2 is-upgraded>Set up your authentication</h2>
+<h3 is-upgraded>1. Create and configure a Zoom OAuth App on Zoom App Marketplace</h3>
+<ul>
+<li>Go to marketplace.zoom.us.</li>
+<li>Click on Sign In at the top right to log in.</li>
+</ul>
+<h3 is-upgraded>2. Find your callback URL and set up authentication</h3>
+<p>The next step requires a callback URL, which looks like this: https://.supabase.co/auth/v1/callback</p>
+<ul>
+<li>Go to your Supabase Project Dashboard</li>
+<li>Click on the Authentication icon in the left sidebar</li>
+<li>Click on Providers under the Configuration section</li>
+<li>Click on Zoom from the accordion list to expand and you&#39;ll find your Callback URL, you can click Copy to copy it to the clipboard</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Create a Zoom General OAuth app" duration="5">
+        <ul>
+<li>Go to marketplace.zoom.us.</li>
+<li>Click on Sign In at the top right to log in.</li>
+<li>Click Build App (from the dropdown Develop)</li>
+<li>In the General App card, click Create</li>
+<li>Type the name of your app</li>
+<li>Choose app type</li>
+<li>Click Create</li>
+</ul>
+<p><strong>Under App credentials</strong></p>
+<ul>
+<li>Copy and save your Client ID.</li>
+<li>Copy and save your Client secret.</li>
+<li>Add your Callback URL in the OAuth allow list.</li>
+</ul>
+<p><strong>Under Redirect URL for OAuth</strong></p>
+<ul>
+<li>Paste your Callback URL</li>
+</ul>
+<p><strong>Under Scopes</strong></p>
+<ul>
+<li>Click on Add scopes</li>
+<li>Click on User</li>
+<li>Choose user:read</li>
+<li>Click Done</li>
+<li>Click Continue</li>
+</ul>
+<h2 is-upgraded>Enter your Zoom credentials into your Supabase project</h2>
+<ol type="1">
+<li>Go to your Supabase Project Dashboard</li>
+<li>In the left sidebar, click the Authentication icon (near the top)</li>
+<li>Click on Providers under the Configuration section</li>
+<li>Click on Zoom from the accordion list to expand and turn Zoom Enabled to ON</li>
+<li>Enter your Zoom Client ID and Zoom Client Secret saved in the previous step</li>
+<li>Click Save</li>
+</ol>
+<h2 is-upgraded>Reviw login code added to NextJS app</h2>
+<p>When your user signs in, call signInWithOAuth() with zoom as the provider:</p>
+<pre><code language="language-javascript" class="language-javascript">async function signInWithZoom() {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: &#39;zoom&#39;,
+  })
+}
+</code></pre>
+<h2 is-upgraded>Resources</h2>
+<ul>
+<li><a href="https://supabase.com/" target="_blank">Supabase - Get started for free</a></li>
+<li><a href="https://marketplace.zoom.us/" target="_blank">Zoom App Marketplace</a></li>
+<li><a href="https://developers.zoom.us/docs/build-flow/create-oauth-apps/" target="_blank">Create Zoom Marketplace General App</a></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Review the starter codebase" duration="6">
+        <p>In this section, you&#39;ll review a few areas of the app&#39;s starter codebase to which you&#39;ll add functionality in this codelab.</p>
+<p>Folder and file structure</p>
+<p>The following table contains an overview of the folder and file structure of the app:</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>Folders and Files</p>
+</td><td colspan="1" rowspan="1"><p>Description</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>src/components</p>
+</td><td colspan="1" rowspan="1"><p>React components for filters, headers, tasks details, and reviews</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>src/lib</p>
+</td><td colspan="1" rowspan="1"><p>Utility functions that aren&#39;t necessarily bound to React or Next.js</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>supabase</p>
+</td><td colspan="1" rowspan="1"><p>Supabase-specific code and Supabase configuration</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>public</p>
+</td><td colspan="1" rowspan="1"><p>Static assets in the web app, like icons</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>src/app</p>
+</td><td colspan="1" rowspan="1"><p>Routing with the Next.js App Router</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>src/app/dashboard</p>
+</td><td colspan="1" rowspan="1"><p>An API route handler</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>package.json and package-lock.json</p>
+</td><td colspan="1" rowspan="1"><p>Project dependencies with npm</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>next.config.js</p>
+</td><td colspan="1" rowspan="1"><p>Next.js-specific configuration (server actions are enabled)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>jsconfig.json</p>
+</td><td colspan="1" rowspan="1"><p>JavaScript language-service configuration</p>
+</td></tr>
+</table>
+<h3 is-upgraded>Server and client components</h3>
+<p>The app is a Next.js web app that uses the App Router. Server rendering is used throughout the app. For example, the src/app/page.js file is a server component responsible for the main page. The src/components/tasks.jsx file is a client component denoted by the &#34;use client&#34; directive at the beginning of the file.</p>
+<h2 is-upgraded>Mock data</h2>
+<p>This project uses Snaplet to seed the database. It leverages Large Language Models to generate more realistic data. When your database structure changes, you&#39;ll need to regenerate @snaplet/seed to maintain synchronization with the new structure. You can do this by running:</p>
+<pre><code>npx @snaplet/seed sync
+npx tsx seed.ts &gt; supabase/seed.sql
+
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Create Zoom Chatbot Server Actions" duration="7">
+        <h2 is-upgraded>Add getTeamChatBot Access Token method API</h2>
+<p>Get the access token for the team chat bot</p>
+<pre><code language="language-javascript" class="language-javascript">&#39;use server&#39;;
+
+const ZOOM_API_BASE_URL = &#39;https://api.zoom.us/v2&#39;;
+
+/**
+ * Fetches an OAuth token for the Zoom chatbot.
+ */
+async function getTeamChatBotToken(): Promise&lt;string&gt; {
+  try {
+    const response = await fetch(`https://zoom.us/oauth/token?grant_type=client_credentials`, {
+      method: &#39;POST&#39;,
+      headers: {
+        &#34;Authorization&#34;: `Basic ${Buffer.from(`${process.env.ZOOM_CLIENT_ID}:${process.env.ZOOM_CLIENT_SECRET}`).toString(&#39;base64&#39;)}`,
+        &#34;Content-Type&#34;: &#34;application/x-www-form-urlencoded&#34;,
+      },
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error(&#34;❌ OAuth Token Fetch Failed:&#34;, data);
+      throw new Error(`OAuth Token Error: ${response.status} - ${data.error_description || &#34;Unknown error&#34;}`);
+    }
+
+    return data.access_token;
+  } catch (error) {
+    console.error(&#34;🚨 Error fetching OAuth token:&#34;, error);
+    throw new Error(&#34;Failed to retrieve OAuth token&#34;);
+  }
+}
+</code></pre>
+<h2 is-upgraded>Formats the chatbot message</h2>
+<pre><code language="language-javascript" class="language-javascript">/**
+ * Formats the chatbot message.
+ */
+function formatMessage(activity: string, text: string, subtasks: string[], location: string): string {
+    const formattedSubtasks = subtasks.length &gt; 0
+      ? subtasks.map(task =&gt; `• ${task}`).join(&#34;\n&#34;) 
+      : &#34;None&#34;;
+  
+    return [
+      `📌 Activity: ${activity}\n`,
+      `💬 Message: ${text}\n`,
+      `📋 Subtasks:\n${formattedSubtasks}\n`,  
+      
+      `🔗 Ticket: ${location}\n`,
+    ].join(&#34;\n&#34;);
+  }
+
+</code></pre>
+<h2 is-upgraded>Builds the correct Zoom Team Chat message payload.</h2>
+<pre><code language="language-javascript" class="language-javascript">/**
+ * Builds the correct Zoom Team Chat message payload.
+ */
+function buildMessagePayload(text: string, location: string) {
+    return {
+      robot_jid: process.env.ZOOM_BOT_JID, 
+      to_jid: &#34;tlma8otuqx-ujuoin1k0qq@xmpp.zoom.us&#34;,
+      user_jid: &#34;tlma8otuqx-ujuoin1k0qq@xmpp.zoom.us&#34;,
+      account_id: &#34;-RtWUD64T9KwsSAhmHAjaQ&#34;,
+      content: {
+        head: {
+          text: &#34;Task Notification 📢&#34;,
+        },
+        body: [
+          {
+            type: &#34;message&#34;,
+            text: text,
+          },
+          {
+            type: &#34;actions&#34;,
+            limit: 2,
+            items: [
+              {
+                text: &#34;Open Zoom Dashboard&#34;,
+                value: &#34;button1&#34;,
+                style: &#34;Default&#34;,
+                action: &#34;dialog&#34;, 
+                dialog: {
+                  size: &#34;M&#34;,
+                  link: &#34;https://donte.ngrok.io/zoom-dashboard&#34;,
+                  title: { text: &#34;Zoom Dashboard&#34; },
+                },
+              },
+              {
+                text: &#34;View Task&#34;,
+                value: &#34;button2&#34;,
+                style: &#34;Default&#34;,
+                action: &#34;dialog&#34;, 
+                dialog: {
+                  size: &#34;M&#34;,
+                  link: location,
+                  title: { text: &#34;View Task Details&#34; },
+                },
+              },
+            ],
+          },
+        ],
+      },
+    };
+  }
+</code></pre>
+<h2 is-upgraded>Zoom Team Chat API Call</h2>
+<pre><code language="language-javascript" class="language-javascript">/**
+ * Sends a message to Zoom Team Chat.
+ */
+async function sendMessageToZoom(accessToken: string, payload: any): Promise&lt;{ success?: boolean; error?: string }&gt; {
+    try {
+      console.log(&#34;📨 Sending Message to Zoom Chat:&#34;, JSON.stringify(payload, null, 2));
+  
+      const response = await fetch(`${ZOOM_API_BASE_URL}/im/chat/messages`, {
+        method: &#34;POST&#34;,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          &#34;Content-Type&#34;: &#34;application/json&#34;,
+        },
+        body: JSON.stringify(payload),
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.text();
+        console.error(&#34;❌ Zoom API Error:&#34;, errorData);
+        throw new Error(`Zoom API Error: ${response.status} - ${errorData}`);
+      }
+  
+      return { success: true };
+    } catch (error) {
+      console.error(&#34;🚨 Error sending message to Zoom Team Chat:&#34;, error);
+      return { error: &#34;Failed to send message&#34; };
+    }
+  }
+
+</code></pre>
+<h2 is-upgraded>Chatbot message Handler</h2>
+<pre><code language="language-javascript" class="language-javascript">/**
+ * Server Action: Handles sending messages to the Zoom Team Chatbot.
+ */
+export async function sendTeamChatBotMessage(prevState: any, formData: FormData) {
+    try {
+      // Extract and validate form data
+      const text = formData.get(&#34;message&#34;)?.toString().trim();
+      const activity = formData.get(&#34;activity&#34;)?.toString().trim();
+      const location = formData.get(&#34;location&#34;)?.toString().trim();
+      const selectedSubtasks = formData.getAll(&#34;subtasks&#34;).map(String);
+  
+      if (!text || !activity || !location) {
+        return { error: &#34;❌ Missing required fields&#34; };
+      }
+  
+      const accessToken = await getTeamChatBotToken();
+  
+      // Format the message &amp; build the payload
+      const formattedMessage = formatMessage(activity, text, selectedSubtasks, location);
+      const messagePayload = buildMessagePayload(formattedMessage, location);
+  
+      // Send the message
+      return await sendMessageToZoom(accessToken, messagePayload);
+    } catch (error) {
+      console.error(&#34;🚨 Error processing Zoom chatbot message:&#34;, error);
+      return { error: &#34;❌ Failed to process request&#34; };
+    }
+  }
+
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Add server action to component" duration="8">
+        <h2 is-upgraded>Import server action into task details component</h2>
+<pre><code language="language-javascript" class="language-javascript">// Import Server Action
+import { sendTeamChatBotMessage } from &#34;@/app/lib/chatbot&#34;;
+</code></pre>
+<h2 is-upgraded>Handle form submission state</h2>
+<pre><code language="language-javascript" class="language-javascript"> // Handle form submission state
+  const [state, formAction] = useActionState(sendTeamChatBotMessage, { success: false });
+
+  // Redirect after successful form submission
+  useEffect(() =&gt; {
+    if (state.success) {
+      router.back()
+    }
+  }, [state.success, router]);
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conclusion" duration="7">
+        <p>Congratulations! You learned how to use Zoom App SDK and Team chat Team buildt with supabase to add features and functionality to a Next.js app. Specifically, you used the following:</p>
+<h3 is-upgraded>Learn more</h3>
+<ul>
+<li><a href="https://developers.zoom.us/docs/zoom-apps/" target="_blank">Getting Started with Zoom App</a></li>
+<li><a href="https://developers.zoom.us/docs/api/" target="_blank">Zoom API reference</a></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Command to create codelab" duration="0">
+        <pre><code language="language-bash" class="language-bash">$ claat export how-to-write-a-codelab.md
+</code></pre>
+<pre><code language="language-javascript" class="language-javascript">{ 
+  key1: &#34;string&#34;, 
+  key2: integer,
+  key3: &#34;string&#34;
+}
+</code></pre>
+<p><a href="https://firebase.google.com/codelabs/firebase-nextjs?hl=en#0" target="_blank">Reference Blog Link</a></p>
+<p>Copy into section 2 (Below Duration):</p>
+<pre><code>### Add a Link
+Adding a link!
+[Example of a Link](https://www.google.com)
+
+### Add an Image
+Adding an image!
+![image_caption](https://googlecloud.tips/img/031/codelabs.png)
+
+### Embed an iframe
+![https://codepen.io/tzoght/embed/yRNZaP](https://en.wikipedia.org/wiki/File:Example.jpg &#34;Try Me Publisher&#34;)
+</code></pre>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
