@@ -140,7 +140,7 @@ supabase start
       <google-codelab-step label="Set up your Supabase project" duration="5">
         <p>In this section, you&#39;ll set up a Supabase project and associate a NextJs web app with it. You&#39;ll also set up the Supabase services used by the sample web app.</p>
 <h2 is-upgraded>Create a Supabase project</h2>
-<p>**1. Sign up **</p>
+<p><strong>1. Sign up</strong></p>
 <ul>
 <li>Visit supabase.com and sign up with your email or GitHub account. Once you have an account, log in to access your dashboard.</li>
 </ul>
@@ -182,7 +182,9 @@ supabase start
       </google-codelab-step>
     
       <google-codelab-step label="Create a Zoom General OAuth app" duration="5">
-        <ul>
+        <p>In this section, you&#39;ll create and configure the Zoom Marketplace General App.</p>
+<p><strong>Create Zoom Marketplace App</strong></p>
+<ul>
 <li>Go to marketplace.zoom.us.</li>
 <li>Click on Sign In at the top right to log in.</li>
 <li>Click Build App (from the dropdown Develop)</li>
@@ -238,7 +240,7 @@ supabase start
     
       <google-codelab-step label="Review the starter codebase" duration="6">
         <p>In this section, you&#39;ll review a few areas of the app&#39;s starter codebase to which you&#39;ll add functionality in this codelab.</p>
-<p>Folder and file structure</p>
+<h2 is-upgraded>Folder and file structure</h2>
 <p>The following table contains an overview of the folder and file structure of the app:</p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>Folders and Files</p>
@@ -272,7 +274,7 @@ supabase start
 </td><td colspan="1" rowspan="1"><p>JavaScript language-service configuration</p>
 </td></tr>
 </table>
-<h3 is-upgraded>Server and client components</h3>
+<h2 is-upgraded>Server and client components</h2>
 <p>The app is a Next.js web app that uses the App Router. Server rendering is used throughout the app. For example, the src/app/page.js file is a server component responsible for the main page. The src/components/tasks.jsx file is a client component denoted by the &#34;use client&#34; directive at the beginning of the file.</p>
 <h2 is-upgraded>Mock data</h2>
 <p>This project uses Snaplet to seed the database. It leverages Large Language Models to generate more realistic data. When your database structure changes, you&#39;ll need to regenerate @snaplet/seed to maintain synchronization with the new structure. You can do this by running:</p>
@@ -285,7 +287,8 @@ npx tsx seed.ts &gt; supabase/seed.sql
       </google-codelab-step>
     
       <google-codelab-step label="Create Zoom Chatbot Server Actions" duration="7">
-        <h2 is-upgraded>Add getTeamChatBot Access Token method API</h2>
+        <p>In this section, you will create all the functions needed to interact with the Zoom Chatbot API.</p>
+<h2 is-upgraded>Add getTeamChatBot Access Token method API</h2>
 <p>Get the access token for the team chat bot</p>
 <pre><code language="language-javascript" class="language-javascript">&#39;use server&#39;;
 
@@ -343,10 +346,10 @@ function formatMessage(activity: string, text: string, subtasks: string[], locat
  */
 function buildMessagePayload(text: string, location: string) {
     return {
-      robot_jid: process.env.ZOOM_BOT_JID, 
-      to_jid: &#34;tlma8otuqx-ujuoin1k0qq@xmpp.zoom.us&#34;,
-      user_jid: &#34;tlma8otuqx-ujuoin1k0qq@xmpp.zoom.us&#34;,
-      account_id: &#34;-RtWUD64T9KwsSAhmHAjaQ&#34;,
+    robot_jid: process.env.ZOOM_BOT_JID, // Ensure this is correct
+    to_jid: process.env.ZOOM_TEAMCHAT_JID, // Recipient&#39;s JID (User or Channel)
+    user_jid: process.env.ZOOM_TEAMCHAT_JID, // Sender&#39;s JID
+    account_id: process.env.ZOOM_ACCOUNT_ID, // Ensure this is set in .env
       content: {
         head: {
           text: &#34;Task Notification 📢&#34;,
@@ -456,7 +459,8 @@ export async function sendTeamChatBotMessage(prevState: any, formData: FormData)
       </google-codelab-step>
     
       <google-codelab-step label="Add server action to component" duration="8">
-        <h2 is-upgraded>Import server action into task details component</h2>
+        <p>In this section, we will import our server action chatbot function and connect it to the frontend.</p>
+<h2 is-upgraded>Import server action into task details component</h2>
 <pre><code language="language-javascript" class="language-javascript">// Import Server Action
 import { sendTeamChatBotMessage } from &#34;@/app/lib/chatbot&#34;;
 </code></pre>
