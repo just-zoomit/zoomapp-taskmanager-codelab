@@ -94,10 +94,11 @@ git branch -M main
 <li>Create a new GitHub repository: https://github.com/new. Name it anything you&#39;d like.</li>
 <li>Copy the new URL that GitHub creates for you. It will look like one of the following:</li>
 </ol>
-<ul>
-<li>https://github.com/&lt;USER_NAME&gt;/&lt;REPOSITORY_NAME&gt;.git or</li>
-<li>git@github.com:&lt;USER_NAME&gt;/&lt;REPOSITORY_NAME&gt;.git</li>
-</ul>
+<pre><code>  https://github.com/&lt;USER_NAME&gt;/&lt;REPOSITORY_NAME&gt;.git
+</code></pre>
+<p>or</p>
+<pre><code> git@github.com:&lt;USER_NAME&gt;/&lt;REPOSITORY_NAME&gt;.git
+</code></pre>
 <ol type="1" start="5">
 <li>Push local changes to your new GitHub repository by running the following command. Substitute your actual repository URL for the &lt;REPOSITORY_URL&gt; placeholder.</li>
 </ol>
@@ -413,7 +414,7 @@ function buildMessagePayload(text: string, location: string) {
     };
   }
 </code></pre>
-<h2 is-upgraded>Zoom Team Chat API Call</h2>
+<h2 is-upgraded>Zoom Team Chat API call</h2>
 <pre><code language="language-javascript" class="language-javascript">/**
  * Sends a message to Zoom Team Chat.
  */
@@ -444,7 +445,7 @@ async function sendMessageToZoom(accessToken: string, payload: any): Promise&lt;
   }
 
 </code></pre>
-<h2 is-upgraded>Chatbot message Handler</h2>
+<h2 is-upgraded>Chatbot message handler</h2>
 <pre><code language="language-javascript" class="language-javascript">/**
  * Server Action: Handles sending messages to the Zoom Team Chatbot.
  */
@@ -512,7 +513,7 @@ import { sendTeamChatBotMessage } from &#34;@/app/lib/chatbot&#34;;
         <p>Congratulations! You learned how to use Zoom App SDK and Team chat Team buildt with supabase to add features and functionality to a Next.js app. Specifically, you used the following:</p>
 <h3 is-upgraded>Learn more</h3>
 <ul>
-<li><a href="https://developers.zoom.us/docs/zoom-apps/" target="_blank">Getting Started with Zoom App</a></li>
+<li><a href="https://developers.zoom.us/docs/zoom-apps/" target="_blank">Getting started with Zoom App</a></li>
 <li><a href="https://developers.zoom.us/docs/api/" target="_blank">Zoom API reference</a></li>
 </ul>
 
