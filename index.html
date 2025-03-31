@@ -186,39 +186,78 @@ git push -u origin main
 
       </google-codelab-step>
     
-      <google-codelab-step label="Create a Zoom General OAuth app" duration="5">
-        <p>In this section, you&#39;ll create and configure an user-managed Zoom Marketplace General App.</p>
+      <google-codelab-step label="Start your Ngrok" duration="0">
+        <h2 is-upgraded>Configure Your ngrok Account:</h2>
+<ol type="1">
+<li>Sign up for a free ngrok account</li>
+<li>Obtain your authtoken from the ngrok dashboard</li>
+<li>Run the following command in your terminal, replacing YOUR_AUTH_TOKEN with your actual token:</li>
+</ol>
+<pre><code language="language-bash" class="language-bash">ngrok config add-authtoken YOUR_AUTH_TOKEN. 
+</code></pre>
+<h2 is-upgraded>Start the ngrok Tunnel:</h2>
+<p>Zoom Apps do not support localhost, and must be served over https. To develop locally, you need to tunnel traffic to this application via https, because the application runs in Docker containers serving traffic from http://localhost. You can use Ngrok to do this. Once installed you may run this command from your terminal:</p>
+<pre><code language="language-bash" class="language-bash">ngrok http 3000
+</code></pre>
+<p>Ngrok will output the origin it has created for your tunnel, eg https://9a20-38-99-100-7.ngrok.io. You&#39;ll need to use this across your Zoom App configuration in the Zoom Marketplace (web) build flow (see below).</p>
+<p>Please copy the https origin from the Ngrok terminal output and paste it in the PUBLIC_URL value in the .env file.</p>
+<p class="image-container"><img alt="alt-text-here" src="img/ee15246f67294eb8.png"></p>
+<p>Please note that this ngrok URL will change once you restart ngrok (unless you purchased your own ngrok pro account). If you shut down your Ngrok (there&#39;s no harm to leaving it on), upon restart you&#39;ll need to copy and paste the new origin into the .env file AND also to your Marketplace build flow.</p>
+<h2 is-upgraded>Multiple Endpoints</h2>
+<p>Start multiple tunnels defined in the configuration file.</p>
+<pre><code language="language-bash" class="language-bash">ngrok start foo bar baz
+</code></pre>
+<p><strong>Resources:</strong></p>
+<ul>
+<li><a href="https://ngrok.com/docs/getting-started/" target="_blank">Getting Started With Ngrok</a></li>
+<li><a href="https://ngrok.com/docs/agent/" target="_blank">Multiple Endpoints</a></li>
+<li><a href="https://ngrok.com/docs/agent/config/v3/" target="_blank">Agent Configuartion</a></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Get credentials and configure Zoom Marketplace General app" duration="0">
+        <p>In this section, you&#39;ll Get credentials and configure an user-managed Zoom Marketplace General App.</p>
+<h2 is-upgraded>App Credentials</h2>
 <p><strong>Create Zoom Marketplace App</strong></p>
 <ul>
 <li>Go to marketplace.zoom.us.</li>
 <li>Click on Sign In at the top right to log in.</li>
-<li>Click Build App (from the dropdown Develop)</li>
-<li>In the General App card, click Create</li>
-<li>In the Select how the app is managed section, select user-managed</li>
-<li>Type the name of your app</li>
-<li>Choose app type</li>
-<li>Click Create</li>
+<li>Click Manage</li>
+<li>On the Manage App page, select the recently created &#34;Test Task Manager&#34; General App card</li>
 </ul>
 <p><strong>Under App credentials</strong></p>
 <ul>
 <li>Copy and save your Client ID.</li>
 <li>Copy and save your Client secret.</li>
-<li>Add your Callback URL in the OAuth allow list.</li>
 </ul>
 <p><strong>Under Redirect URL for OAuth</strong></p>
 <ul>
 <li>Paste your Callback URL</li>
 </ul>
-<p><strong>Under Scopes</strong></p>
+<p>your Ngrok origin = ie. https://9a20-38-99-100-7.ngrok.io</p>
+<pre><code language="language-bash" class="language-bash">&lt;your Ngrok origin&gt;/auth/v1/callback
+</code></pre>
+<p><strong>On the Surface page, under Select where to use your app</strong></p>
 <ul>
-<li>Click on Add scopes</li>
-<li>Click on User</li>
-<li>Choose user:read</li>
-<li>Click Done</li>
-<li>Click Continue</li>
+<li>Paste Home URL</li>
 </ul>
-<h2 is-upgraded>Enter your Zoom credentials into your Supabase project</h2>
-<ol type="1">
+<pre><code language="language-bash" class="language-bash">&lt;your Ngrok origin&gt;
+</code></pre>
+<p><strong>Under Domain Allow List</strong></p>
+<ul>
+<li>Add your Ngrok domain only (no protocol, eg 9a20-38-99-100-7.ngrok.io)</li>
+<li>Add the SDK url appssdk.zoom.us in the Domain allow list</li>
+</ul>
+<p><strong>Important</strong>: All requests to domains NOT in the Domain allow list in the app&#39;s Marketplace build flow will be blocked in the Zoom Apps embedded browser</p>
+<p><strong>Information</strong> Please fill out the developer contact name and developer contact email fields to test the application locally. In order to submit the application for review, you will need to fill out the rest of the fields.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Enter your Zoom credentials into your Supabase project" duration="5">
+        <ol type="1">
 <li>Go to your Supabase Project Dashboard</li>
 <li>In the left sidebar, click the Authentication icon (near the top)</li>
 <li>Click on Providers under the Configuration section</li>
