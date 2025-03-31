@@ -369,29 +369,50 @@ npx tsx seed.ts &gt; supabase/seed.sql
 </td><td colspan="1" rowspan="1"><p>Backend integrations, user-level or account-level operations</p>
 </td><td colspan="1" rowspan="1"><p>Real-time bot interactions in Zoom Team Chat</p>
 </td></tr>
-<tr><td colspan="1" rowspan="1"><p><strong>Typical Use Cases</strong></p>
-</td><td colspan="1" rowspan="1"><p>- Send messages on behalf of a user- Read user chat history - Channel management - File sharing</p>
-</td><td colspan="1" rowspan="1"><p>- Listen/respond to chat messages- Handle slash commands- Post interactive messages- Mention bots</p>
+</table>
+<p>| <strong>Scope</strong> | Works with <strong>user-based</strong> or <strong>account-based</strong> OAuth apps | Used only by <strong>Chatbot apps</strong> installed in Zoom Team Chat | | <strong>Installation</strong> | OAuth flow required (user or admin consent) | Installed via Zoom Marketplace as a Chatbot | | <strong>Bot Mention Trigger</strong> | Not supported | Yes – Bots can listen and respond when @mentioned | | <strong>Can Post to Channel</strong> | Yes, using user token | Yes, using bot JID and Chatbot token | | <strong>Can Read Messages</strong> | Yes, with appropriate scopes | Only if the message is addressed to or from the bot |</p>
+<p>Absolutely! Here&#39;s a <strong>separate, cleaner table</strong> where each <strong>typical use case</strong> for Zoom Team Chat APIs and Zoom Chatbot APIs gets its own row:</p>
+<h2 is-upgraded>🧩 Typical Use Cases: Zoom Team Chat API vs. Zoom Chatbot API</h2>
+<table>
+<tr><td colspan="1" rowspan="1"><p><strong>Use Case</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Zoom Team Chat API</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Zoom Chatbot API</strong></p>
 </td></tr>
-<tr><td colspan="1" rowspan="1"><p><strong>Scope</strong></p>
-</td><td colspan="1" rowspan="1"><p>Works with <strong>user-based</strong> or <strong>account-based</strong> OAuth apps</p>
-</td><td colspan="1" rowspan="1"><p>Used only by <strong>Chatbot apps</strong> installed in Zoom Team Chat</p>
+<tr><td colspan="1" rowspan="1"><p>Send messages to a chat/channel</p>
+</td><td colspan="1" rowspan="1"><p>✅ Yes (on behalf of user or system)</p>
+</td><td colspan="1" rowspan="1"><p>✅ Yes (as the bot)</p>
 </td></tr>
-<tr><td colspan="1" rowspan="1"><p><strong>Installation</strong></p>
-</td><td colspan="1" rowspan="1"><p>OAuth flow required (user or admin consent)</p>
-</td><td colspan="1" rowspan="1"><p>Installed via Zoom Marketplace as a Chatbot</p>
+<tr><td colspan="1" rowspan="1"><p>Respond to @mentions in chat</p>
+</td><td colspan="1" rowspan="1"><p>❌ Not supported</p>
+</td><td colspan="1" rowspan="1"><p>✅ Yes</p>
 </td></tr>
-<tr><td colspan="1" rowspan="1"><p><strong>Bot Mention Trigger</strong></p>
-</td><td colspan="1" rowspan="1"><p>Not supported</p>
-</td><td colspan="1" rowspan="1"><p>Yes – Bots can listen and respond when @mentioned</p>
+<tr><td colspan="1" rowspan="1"><p>Handle slash commands</p>
+</td><td colspan="1" rowspan="1"><p>❌ Not supported</p>
+</td><td colspan="1" rowspan="1"><p>✅ Yes</p>
 </td></tr>
-<tr><td colspan="1" rowspan="1"><p><strong>Can Post to Channel</strong></p>
-</td><td colspan="1" rowspan="1"><p>Yes, using user token</p>
-</td><td colspan="1" rowspan="1"><p>Yes, using bot JID and Chatbot token</p>
+<tr><td colspan="1" rowspan="1"><p>Post interactive message elements (buttons, menus)</p>
+</td><td colspan="1" rowspan="1"><p>❌ Not supported</p>
+</td><td colspan="1" rowspan="1"><p>✅ Yes</p>
 </td></tr>
-<tr><td colspan="1" rowspan="1"><p><strong>Can Read Messages</strong></p>
-</td><td colspan="1" rowspan="1"><p>Yes, with appropriate scopes</p>
-</td><td colspan="1" rowspan="1"><p>Only if the message is addressed to or from the bot</p>
+<tr><td colspan="1" rowspan="1"><p>Read chat messages</p>
+</td><td colspan="1" rowspan="1"><p>✅ Yes (with scopes)</p>
+</td><td colspan="1" rowspan="1"><p>✅ Only if sent to/from bot</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Manage channels (create, invite, remove users)</p>
+</td><td colspan="1" rowspan="1"><p>✅ Yes</p>
+</td><td colspan="1" rowspan="1"><p>❌ Not supported</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Receive event notifications (webhooks)</p>
+</td><td colspan="1" rowspan="1"><p>✅ Via Zoom Event Subscriptions</p>
+</td><td colspan="1" rowspan="1"><p>✅ Via Chatbot Event Triggers</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>File sharing in chat</p>
+</td><td colspan="1" rowspan="1"><p>✅ Yes</p>
+</td><td colspan="1" rowspan="1"><p>✅ Yes</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>System-level task notifications</p>
+</td><td colspan="1" rowspan="1"><p>✅ Yes</p>
+</td><td colspan="1" rowspan="1"><p>✅ Yes</p>
 </td></tr>
 </table>
 
