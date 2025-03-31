@@ -344,6 +344,58 @@ npx tsx seed.ts &gt; supabase/seed.sql
     
       <google-codelab-step label="Create Zoom Chatbot Server Actions" duration="7">
         <p>In this section, you will create all the functions needed to interact with the Zoom Chatbot API.</p>
+<h2 is-upgraded>Introduction to Zoom Team Chat &amp; Chatbot APIs</h2>
+<p>Zoom offers two powerful ways to extend Team Chat functionality: Team Chat APIs and Chatbot APIs. While both interact with Zoom Team Chat, they use different authentication mechanisms and are designed for distinct use cases.</p>
+<p>In this section, we&#39;ll start by implementing Chatbot functionality, which uses a unique access token that does not require a refresh token—making it ideal for lightweight, event-driven interactions.</p>
+<p>Chatbots are especially effective for keeping teams in sync and up to date, whether by posting reminders, surfacing action items, or responding to slash commands. To demonstrate this, we&#39;ll integrate Chatbot APIs into the Add Activity modal, enabling real-time task updates directly in chat.</p>
+<p>Before diving in, let&#39;s look at the key differences and use cases in the table below:</p>
+<h2 is-upgraded>🔍 <strong>Zoom Team Chat APIs vs. Zoom Chatbot APIs – Use Case Comparison</strong></h2>
+<table>
+<tr><td colspan="1" rowspan="1"><p><strong>Category</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Zoom Team Chat APIs</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Zoom Chatbot APIs</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>API Type</strong></p>
+</td><td colspan="1" rowspan="1"><p>REST API (part of Zoom&#39;s broader API platform)</p>
+</td><td colspan="1" rowspan="1"><p>Specialized API for building Zoom Team Chat bots</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>Access Token Type</strong></p>
+</td><td colspan="1" rowspan="1"><p>OAuth 2.0 access token (with <strong>refresh token</strong>)</p>
+</td><td colspan="1" rowspan="1"><p><strong>Chatbot access token</strong> (no refresh token; short-lived)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>Token Expiry</strong></p>
+</td><td colspan="1" rowspan="1"><p>Access token expires in 1 hour; refresh token used to renew</p>
+</td><td colspan="1" rowspan="1"><p>Expires in 1 hour; must <strong>request a new token manually</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>Best For</strong></p>
+</td><td colspan="1" rowspan="1"><p>Backend integrations, user-level or account-level operations</p>
+</td><td colspan="1" rowspan="1"><p>Real-time bot interactions in Zoom Team Chat</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>Typical Use Cases</strong></p>
+</td><td colspan="1" rowspan="1"><p>- Send messages on behalf of a user- Read user chat history- Channel management- File sharing</p>
+</td><td colspan="1" rowspan="1"><p>- Listen/respond to chat messages- Handle slash commands- Post interactive messages- Mention bots</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>Scope</strong></p>
+</td><td colspan="1" rowspan="1"><p>Works with <strong>user-based</strong> or <strong>account-based</strong> OAuth apps</p>
+</td><td colspan="1" rowspan="1"><p>Used only by <strong>Chatbot apps</strong> installed in Zoom Team Chat</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>Installation</strong></p>
+</td><td colspan="1" rowspan="1"><p>OAuth flow required (user or admin consent)</p>
+</td><td colspan="1" rowspan="1"><p>Installed via Zoom Marketplace as a Chatbot</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>Bot Mention Trigger</strong></p>
+</td><td colspan="1" rowspan="1"><p>Not supported</p>
+</td><td colspan="1" rowspan="1"><p>Yes – Bots can listen and respond when @mentioned</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>Can Post to Channel</strong></p>
+</td><td colspan="1" rowspan="1"><p>Yes, using user token</p>
+</td><td colspan="1" rowspan="1"><p>Yes, using bot JID and Chatbot token</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>Can Read Messages</strong></p>
+</td><td colspan="1" rowspan="1"><p>Yes, with appropriate scopes</p>
+</td><td colspan="1" rowspan="1"><p>Only if the message is addressed to or from the bot</p>
+</td></tr>
+</table>
 <h2 is-upgraded>Add getTeamChatBot Access Token method API</h2>
 <p>Get the access token for the team chat bot</p>
 <pre><code language="language-javascript" class="language-javascript">&#39;use server&#39;;
