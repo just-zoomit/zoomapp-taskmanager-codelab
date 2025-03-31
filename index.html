@@ -347,7 +347,7 @@ npx tsx seed.ts &gt; supabase/seed.sql
 <p>In this section, we&#39;ll start by implementing Chatbot functionality, which uses a unique access token that does not require a refresh token—making it ideal for lightweight, event-driven interactions.</p>
 <p>Chatbots are especially effective for keeping teams in sync and up to date, whether by posting reminders, surfacing action items, or responding to slash commands. To demonstrate this, we&#39;ll integrate Chatbot APIs into the Add Activity modal, enabling real-time task updates directly in chat.</p>
 <p>Before diving in, let&#39;s look at the key differences and use cases in the table below:</p>
-<h2 is-upgraded>🔍 <strong>Zoom Team Chat APIs vs. Zoom Chatbot APIs – Use Case Comparison</strong></h2>
+<h2 is-upgraded>🔍 **Zoom Team Chat APIs vs. Zoom Chatbot APIs **</h2>
 <table>
 <tr><td colspan="1" rowspan="1"><p><strong>Category</strong></p>
 </td><td colspan="1" rowspan="1"><p><strong>Zoom Team Chat APIs</strong></p>
@@ -371,7 +371,6 @@ npx tsx seed.ts &gt; supabase/seed.sql
 </td></tr>
 </table>
 <p>| <strong>Scope</strong> | Works with <strong>user-based</strong> or <strong>account-based</strong> OAuth apps | Used only by <strong>Chatbot apps</strong> installed in Zoom Team Chat | | <strong>Installation</strong> | OAuth flow required (user or admin consent) | Installed via Zoom Marketplace as a Chatbot | | <strong>Bot Mention Trigger</strong> | Not supported | Yes – Bots can listen and respond when @mentioned | | <strong>Can Post to Channel</strong> | Yes, using user token | Yes, using bot JID and Chatbot token | | <strong>Can Read Messages</strong> | Yes, with appropriate scopes | Only if the message is addressed to or from the bot |</p>
-<p>Absolutely! Here&#39;s a <strong>separate, cleaner table</strong> where each <strong>typical use case</strong> for Zoom Team Chat APIs and Zoom Chatbot APIs gets its own row:</p>
 <h2 is-upgraded>🧩 Typical Use Cases: Zoom Team Chat API vs. Zoom Chatbot API</h2>
 <table>
 <tr><td colspan="1" rowspan="1"><p><strong>Use Case</strong></p>
