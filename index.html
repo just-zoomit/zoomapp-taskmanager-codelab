@@ -287,7 +287,7 @@ git push -u origin main
 
       </google-codelab-step>
     
-      <google-codelab-step label="Review the starter codebase" duration="6">
+      <google-codelab-step label="Review the starter codebase" duration="0">
         <p>In this section, you&#39;ll review a few areas of the app&#39;s starter codebase to which you&#39;ll add functionality in this codelab.</p>
 <h2 is-upgraded>Folder and file structure</h2>
 <p>The following table contains an overview of the folder and file structure of the app:</p>
@@ -342,10 +342,8 @@ npx tsx seed.ts &gt; supabase/seed.sql
 
       </google-codelab-step>
     
-      <google-codelab-step label="Create Zoom Chatbot Server Actions" duration="7">
-        <p>In this section, you will create all the functions needed to interact with the Zoom Chatbot API.</p>
-<h2 is-upgraded>Introduction to Zoom Team Chat &amp; Chatbot APIs</h2>
-<p>Zoom offers two powerful ways to extend Team Chat functionality: Team Chat APIs and Chatbot APIs. While both interact with Zoom Team Chat, they use different authentication mechanisms and are designed for distinct use cases.</p>
+      <google-codelab-step label="Introduction to Zoom Team Chat &amp; Chatbot APIs" duration="6">
+        <p>Zoom offers two powerful ways to extend Team Chat functionality: Team Chat APIs and Chatbot APIs. While both interact with Zoom Team Chat, they use different authentication mechanisms and are designed for distinct use cases.</p>
 <p>In this section, we&#39;ll start by implementing Chatbot functionality, which uses a unique access token that does not require a refresh token—making it ideal for lightweight, event-driven interactions.</p>
 <p>Chatbots are especially effective for keeping teams in sync and up to date, whether by posting reminders, surfacing action items, or responding to slash commands. To demonstrate this, we&#39;ll integrate Chatbot APIs into the Add Activity modal, enabling real-time task updates directly in chat.</p>
 <p>Before diving in, let&#39;s look at the key differences and use cases in the table below:</p>
@@ -396,6 +394,12 @@ npx tsx seed.ts &gt; supabase/seed.sql
 </td><td colspan="1" rowspan="1"><p>Only if the message is addressed to or from the bot</p>
 </td></tr>
 </table>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Create Zoom Chatbot Server Actions" duration="7">
+        <p>In this section, you will create all the functions needed to interact with the Zoom Chatbot API.</p>
 <h2 is-upgraded>Add getTeamChatBot Access Token method API</h2>
 <p>Get the access token for the team chat bot</p>
 <pre><code language="language-javascript" class="language-javascript">&#39;use server&#39;;
