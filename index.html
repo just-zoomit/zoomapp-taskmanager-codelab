@@ -369,8 +369,23 @@ npx tsx seed.ts &gt; supabase/seed.sql
 </td><td colspan="1" rowspan="1"><p>Backend integrations, user-level or account-level operations</p>
 </td><td colspan="1" rowspan="1"><p>Real-time bot interactions in Zoom Team Chat</p>
 </td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>Installation</strong></p>
+</td><td colspan="1" rowspan="1"><p>OAuth flow required (user or admin consent)</p>
+</td><td colspan="1" rowspan="1"><p>Installed via Zoom Marketplace as a Chatbot</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>Bot Mention Trigger</strong></p>
+</td><td colspan="1" rowspan="1"><p>Not supported</p>
+</td><td colspan="1" rowspan="1"><p>Yes – Bots can listen and respond when @mentioned</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>Can Post to Channel</strong></p>
+</td><td colspan="1" rowspan="1"><p>Yes, using user token</p>
+</td><td colspan="1" rowspan="1"><p>Yes, using bot JID and Chatbot token</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>Can Read Messages</strong></p>
+</td><td colspan="1" rowspan="1"><p>Yes, with appropriate scopes</p>
+</td><td colspan="1" rowspan="1"><p>Only if the message is addressed to or from the bot</p>
+</td></tr>
 </table>
-<p>| <strong>Scope</strong> | Works with <strong>user-based</strong> or <strong>account-based</strong> OAuth apps | Used only by <strong>Chatbot apps</strong> installed in Zoom Team Chat | | <strong>Installation</strong> | OAuth flow required (user or admin consent) | Installed via Zoom Marketplace as a Chatbot | | <strong>Bot Mention Trigger</strong> | Not supported | Yes – Bots can listen and respond when @mentioned | | <strong>Can Post to Channel</strong> | Yes, using user token | Yes, using bot JID and Chatbot token | | <strong>Can Read Messages</strong> | Yes, with appropriate scopes | Only if the message is addressed to or from the bot |</p>
 <h2 is-upgraded>🧩 Typical Use Cases: Zoom Team Chat API vs. Zoom Chatbot API</h2>
 <table>
 <tr><td colspan="1" rowspan="1"><p><strong>Use Case</strong></p>
