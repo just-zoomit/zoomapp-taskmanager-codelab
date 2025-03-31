@@ -370,14 +370,30 @@ npx tsx seed.ts &gt; supabase/seed.sql
 </td><td colspan="1" rowspan="1"><p>Real-time bot interactions in Zoom Team Chat</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p><strong>Typical Use Cases</strong></p>
-</td><td colspan="2" rowspan="1"><p>- Send messages on behalf of a user- Read user chat history</p>
-</td><td colspan="1" rowspan="1"></td></tr>
+</td><td colspan="1" rowspan="1"><p>- Send messages on behalf of a user- Read user chat history - Channel management - File sharing</p>
+</td><td colspan="1" rowspan="1"><p>- Listen/respond to chat messages- Handle slash commands- Post interactive messages- Mention bots</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>Scope</strong></p>
+</td><td colspan="1" rowspan="1"><p>Works with <strong>user-based</strong> or <strong>account-based</strong> OAuth apps</p>
+</td><td colspan="1" rowspan="1"><p>Used only by <strong>Chatbot apps</strong> installed in Zoom Team Chat</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>Installation</strong></p>
+</td><td colspan="1" rowspan="1"><p>OAuth flow required (user or admin consent)</p>
+</td><td colspan="1" rowspan="1"><p>Installed via Zoom Marketplace as a Chatbot</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>Bot Mention Trigger</strong></p>
+</td><td colspan="1" rowspan="1"><p>Not supported</p>
+</td><td colspan="1" rowspan="1"><p>Yes – Bots can listen and respond when @mentioned</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>Can Post to Channel</strong></p>
+</td><td colspan="1" rowspan="1"><p>Yes, using user token</p>
+</td><td colspan="1" rowspan="1"><p>Yes, using bot JID and Chatbot token</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>Can Read Messages</strong></p>
+</td><td colspan="1" rowspan="1"><p>Yes, with appropriate scopes</p>
+</td><td colspan="1" rowspan="1"><p>Only if the message is addressed to or from the bot</p>
+</td></tr>
 </table>
-<ul>
-<li>Channel management</li>
-<li>File sharing | - Listen/respond to chat messages</li>
-<li>Handle slash commands- Post interactive messages- Mention bots | | <strong>Scope</strong> | Works with <strong>user-based</strong> or <strong>account-based</strong> OAuth apps | Used only by <strong>Chatbot apps</strong> installed in Zoom Team Chat | | <strong>Installation</strong> | OAuth flow required (user or admin consent) | Installed via Zoom Marketplace as a Chatbot | | <strong>Bot Mention Trigger</strong> | Not supported | Yes – Bots can listen and respond when @mentioned | | <strong>Can Post to Channel</strong> | Yes, using user token | Yes, using bot JID and Chatbot token | | <strong>Can Read Messages</strong> | Yes, with appropriate scopes | Only if the message is addressed to or from the bot |</li>
-</ul>
 
 
       </google-codelab-step>
