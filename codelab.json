@@ -3,13 +3,13 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2025-03-31T14:56:32-04:00",
-  "id": "how-to-integreate-a-zoomapp-nextjs",
-  "duration": 41,
+  "updated": "2025-04-01T04:36:14-04:00",
+  "id": "how-to-setup-a-zoomapp-nextjs",
+  "duration": 28,
   "title": "Building multi-feature Zoom app integration tutorial: Team Chat, Chatbot, Meetings, and more.",
   "authors": "Donte",
-  "summary": "How to integreate Zoom App SDK and Team Chat",
-  "source": "zoomapp-chatbot-nextjs.md",
+  "summary": "How to setup Zoom App SDK and Team Chat",
+  "source": "setup-zoomapp-chatbot-nextjs.md",
   "theme": "",
   "status": [
     "published"
@@ -21,5 +21,5 @@
     "medium"
   ],
   "feedback": "https://devforum.zoom.us/c/zoom-apps",
-  "url": "how-to-integreate-a-zoomapp-nextjs"
+  "url": "how-to-setup-a-zoomapp-nextjs"
 }
