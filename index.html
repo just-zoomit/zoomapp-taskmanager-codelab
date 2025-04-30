@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
-  <title>Set up a multi-feature Zoom app integration development environment: Zoom, Ngrok, and Supabase developer accounts.</title>
+  <title>Setup development environment: Zoom, Ngrok, and Supabase developer accounts.</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
@@ -24,12 +24,29 @@
   <google-codelab codelab-gaid=""
                   codelab-ga4id=""
                   id="how-to-setup-a-zoomapp-nextjs"
-                  title="Set up a multi-feature Zoom app integration development environment: Zoom, Ngrok, and Supabase developer accounts."
+                  title="Setup development environment: Zoom, Ngrok, and Supabase developer accounts."
                   environment="web"
                   feedback-link="https://devforum.zoom.us/c/zoom-apps">
     
       <google-codelab-step label="Before you begin" duration="0">
-        <p>In this codelab, you&#39;ll learn how to setup a multi-feature Zoom application that integrates Team Chat, Chatbot, and Meeting functionalities using a Next.js web app for task management. - covering everything from basic setup to advanced features.</p>
+        <p>This codelab is Part 2 of 9 in a series focused on extending a Next.js Task Manager app into the Zoom Developer Platform. Throughout this series, you&#39;ll learn how to create a feature-rich Zoom Marketplace app that both integrates third-party applications into Zoom products and brings Zoom functionality into third-party applications. In this code lab series, you will learn core Zoom Developer Platform concepts for building engaging experiences within Zoom apps, including Team Chat features, chatbots, and deep linking from browser to Zoom client.</p>
+<p>Part 1: <a href="https://just-zoomit.github.io/multi-feature-zoom-manifest-file/#0" target="_blank"><strong>Create a multi-feature Zoom app with a manifest file: (Team Chat, Chatbot and Meetings)</strong></a></p>
+<p>Part 2: <a href="https://just-zoomit.github.io/zoomapp-taskmanager-codelab/#0" target="_blank"><strong>Set up a multi-feature Zoom app integration development environment: Zoom, Ngrok, and Supabase developer accounts</strong></a></p>
+<p>Part 3: <a href="https://just-zoomit.github.io/how-to-install-and-authorize-zoom-app-sdk-with-supabase/#0" target="_blank"><strong>Install and authorize multi-feature app integration: Zoom App, Team Chat, and Supabase Auth</strong></a></p>
+<p>Part 4: <a href="https://just-zoomit.github.io/how-to-integrate-a-zoomapp-nextjs/#0" target="_blank"><strong>Integrate multi-feature Zoom app integration: Chatbot and Team Chat</strong></a></p>
+<p>Part 5: <a href="https://just-zoomit.github.io/how-to-integrate-teamchat-za/#0" target="_blank"><strong>Integrate multi-feature app integration: Team Chat</strong></a></p>
+<p>Part 6: <a href="https://just-zoomit.github.io/how-to-deep-link-zoom-client-za/#0" target="_blank"><strong>Integrate multi-feature app integration: Deep Linking</strong></a></p>
+<p>Part 7: <a href="https://just-zoomit.github.io/how-to-integrate-webhooks-za/#0" target="_blank"><strong>Integrate multi-feature app integration: Webhooks</strong></a></p>
+<p>Part 8: <a href="https://just-zoomit.github.io/how-to-integrate-slash-commands-za/#0" target="_blank"><strong>Integrate multi-feature app integration: Slash Commands</strong></a></p>
+<p>Part 9: <a href="https://just-zoomit.github.io/how-to-integrate-zoom-app-sdk/#0" target="_blank"><strong>Integrate multi-feature app integration: Zoom App SDK</strong></a></p>
+<p>⚠️ <strong>Warning:</strong> Some feature requires a paid plan.</p>
+<p>💡 <strong>Tip:</strong> If you don&#39;t have a paid workspace for development, you can join the <a href="https://api.slack.com/developer-program" target="_blank">Developer Program</a> and provision a sandbox with access to all Zoom Developer platform features for free.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="What you&#39;ll build" duration="0">
+        <p>In this codelab, you&#39;ll learn how to setup a multi-feature Zoom application that integrates Team Chat, Chatbot, and Meeting functionalities using a Next.js web app for task management – covering everything from basic setup to advanced features.</p>
 <p class="image-container"><img alt="alt-text-here" src="img/86caacb02af60784.png"></p>
 <p>The completed web app showcases features that demonstrate how the Zoom App SDK can extend your web app beyond the browser. These features include:</p>
 <ul>
@@ -65,12 +82,12 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="Set up your development environment and GitHub repository" duration="5">
+      <google-codelab-step label="Set up your development environment and GitHub repository" duration="3">
         <p>This codelab provides the app&#39;s starter codebase.</p>
 <h2 is-upgraded>Create a GitHub repository</h2>
 <p>The codelab source can be found at https://github.com/zoom/task-manager-sample. The repository contains a branch for each step of development process. However, this codelab uses only the nextjs-start directory. Take note of the following directories:</p>
-<pre><code language="language-bash" class="language-bash">* `task-manager-sample-start`: contains the starter code upon which you build.
-* `task-manager-sample-end`: contains the solution code for the finished web app.
+<pre><code language="language-bash" class="language-bash">--&gt; `task-manager-sample-start`: contains the starter code upon which you build.
+--&gt; `task-manager-sample-end`: contains the solution code for the finished web app.
 </code></pre>
 <p>Copy the nextjs-start folder into your own repository:</p>
 <p><strong>Using a terminal, create a new folder on your computer and change into the new directory:</strong></p>
@@ -110,36 +127,7 @@ git push -u origin main
 
       </google-codelab-step>
     
-      <google-codelab-step label="Install or update the Supabase CLI" duration="3">
-        <p>If you see a lower version or you don&#39;t have the Supabase CLI installed, run the install command:</p>
-<pre><code language="language-bash" class="language-bash">brew install supabase/tap/supabase
-
-</code></pre>
-<h2 is-upgraded>Running Supabase locally</h2>
-<p>Inside the folder where you want to create your project, run:</p>
-<pre><code language="language-bash" class="language-bash">supabase init
-
-</code></pre>
-<p>This will create a new supabase folder. It&#39;s safe to commit this folder to your version control system.</p>
-<p>Now, to start the Supabase stack, run:</p>
-<pre><code>supabase start
-
-</code></pre>
-<p>This takes time on your first run because the CLI needs to download the Docker images to your local machine. The CLI includes the entire Supabase toolset, and a few additional images that are useful for local development (like a local SMTP server and a database diff tool).</p>
-<h2 is-upgraded>Log in to Supabase</h2>
-<p>Log in to the Supabase CLI and connect your Supabase account using your personal access token:</p>
-<pre><code language="language-bash" class="language-bash">supabase login
-</code></pre>
-<h2 is-upgraded>Resources</h2>
-<ul>
-<li><a href="https://supabase.com/docs/guides/local-development/cli/getting-started" target="_blank">Supabase CLI</a></li>
-<li><a href="https://supabase.com/docs/guides/local-development" target="_blank">Supabase: Local Development &amp; CLI</a></li>
-</ul>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Set up your Supabase project" duration="5">
+      <google-codelab-step label="Set up your Supabase project" duration="0">
         <p>In this section, you&#39;ll set up a Supabase project and associate a NextJs web app with it. You&#39;ll also set up the Supabase services used by the sample web app.</p>
 <h2 is-upgraded>Create a Supabase project</h2>
 <p><strong>1. Sign up</strong></p>
@@ -182,6 +170,35 @@ git push -u origin main
 <h2 is-upgraded>Resources</h2>
 <ul>
 <li><a href="https://supabase.com/docs/guides/auth/social-login/auth-zoom" target="_blank">Supabase: Login with Zoom</a></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Install or update the Supabase CLI" duration="5">
+        <p>If you see a lower version or you don&#39;t have the Supabase CLI installed, run the install command:</p>
+<pre><code language="language-bash" class="language-bash">brew install supabase/tap/supabase
+
+</code></pre>
+<h2 is-upgraded>Running Supabase locally</h2>
+<p>Inside the folder where you want to create your project, run:</p>
+<pre><code language="language-bash" class="language-bash">supabase init
+
+</code></pre>
+<p>This will create a new supabase folder. It&#39;s safe to commit this folder to your version control system.</p>
+<p>Now, to start the Supabase stack, run:</p>
+<pre><code>supabase start
+
+</code></pre>
+<p>This takes time on your first run because the CLI needs to download the Docker images to your local machine. The CLI includes the entire Supabase toolset, and a few additional images that are useful for local development (like a local SMTP server and a database diff tool).</p>
+<h2 is-upgraded>Log in to Supabase</h2>
+<p>Log in to the Supabase CLI and connect your Supabase account using your personal access token:</p>
+<pre><code language="language-bash" class="language-bash">supabase login
+</code></pre>
+<h2 is-upgraded>Resources</h2>
+<ul>
+<li><a href="https://supabase.com/docs/guides/local-development/cli/getting-started" target="_blank">Supabase CLI</a></li>
+<li><a href="https://supabase.com/docs/guides/local-development" target="_blank">Supabase: Local Development &amp; CLI</a></li>
 </ul>
 
 

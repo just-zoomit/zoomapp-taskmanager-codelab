@@ -3,13 +3,13 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2025-04-01T04:41:49-04:00",
+  "updated": "2025-04-29T21:13:50-04:00",
   "id": "how-to-setup-a-zoomapp-nextjs",
   "duration": 28,
-  "title": "Set up a multi-feature Zoom app integration development environment: Zoom, Ngrok, and Supabase developer accounts.",
+  "title": "Setup development environment: Zoom, Ngrok, and Supabase developer accounts.",
   "authors": "Donte",
   "summary": "How to setup Zoom App SDK and Team Chat",
-  "source": "setup-zoomapp-chatbot-nextjs.md",
+  "source": "01_setup-zoomapp-chatbot-nextjs.md",
   "theme": "",
   "status": [
     "published"
