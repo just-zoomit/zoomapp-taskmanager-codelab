@@ -223,7 +223,9 @@ npm run dev
 <pre><code language="language-bash" class="language-bash">ngrok http 3000
 </code></pre>
 <p>Ngrok will output the origin it has created for your tunnel, eg https://9a20-38-99-100-7.ngrok.io. You&#39;ll need to use this across your Zoom App configuration in the Zoom Marketplace (web) build flow (see below).</p>
-<p>Please copy the https origin from the Ngrok terminal output and paste it in the PUBLIC_URL value in the .env file.</p>
+<ol type="1" start="2">
+<li>Please copy the https origin from the Ngrok terminal output and paste it in the PUBLIC_URL value in the .env file.</li>
+</ol>
 <p class="image-container"><img alt="alt-text-here" src="img/ee15246f67294eb8.png"></p>
 <p>Please note that this ngrok URL will change once you restart ngrok (unless you purchased your own ngrok pro account). If you shut down your Ngrok (there&#39;s no harm to leaving it on), upon restart you&#39;ll need to copy and paste the new origin into the .env file AND also to your Marketplace build flow.</p>
 <h2 is-upgraded>3. Multiple Endpoints</h2>
