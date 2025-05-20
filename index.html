@@ -48,15 +48,15 @@
       </google-codelab-step>
     
       <google-codelab-step label="What you&#39;ll build" duration="0">
-        <p>In this codelab, you&#39;ll learn how to setup a multi-feature Zoom application that integrates Team Chat, Chatbot, and Meeting functionalities using a Next.js web app for task management.</p>
+        <p>In this codelab, you will build a multi-feature Zoom application that integrates team chat, chatbot, and meeting functionalities using a Next.js web app for task management.</p>
 <p class="image-container"><img alt="alt-text-here" src="img/86caacb02af60784.png"></p>
-<p>The completed web app showcases features that demonstrate how the Zoom App SDK can extend your web app beyond the browser. These features include:</p>
+<p>The completed web app demonstrates how the Zoom App SDK can extend your application beyond the browser. Key features include:</p>
 <ul>
-<li><strong>Installation and Authorization</strong>: Seamlessly install and authorize the Zoom App SDK to enable secure integration and unlock full platform capabilities.</li>
-<li><strong>Message Delivery Methods</strong>: Ensure reliable communication using Zoom Team Chat and ChatBot REST APIs.</li>
-<li><strong>Webview Integration</strong>: Launch engaging webviews using button interactions and shortcuts, with support for interactive dialogs and preview cards.</li>
-<li><strong>Interactive Events</strong>: Trigger webhook actions via button clicks and manage deep link authorization in Team Chat.</li>
-<li><strong>Chat Commands and Features</strong>: Leverage slash commands and URL unfurling to streamline interactions and enrich content display from verified domains.</li>
+<li><strong>Installation and Authorization</strong>:  Install and authorize the Zoom App SDK to enable secure integration and access full platform capabilities.</li>
+<li><strong>Message Delivery Methods</strong>: Use Zoom Team Chat and Chatbot REST APIs to ensure reliable message delivery.</li>
+<li><strong>Webview Integration</strong>: Launch webviews through button interactions and shortcuts, with support for interactive dialogs and preview cards.</li>
+<li><strong>Interactive Events</strong>: Trigger webhook actions via button clicks and manage deep link authorization in team chat.</li>
+<li><strong>Chat Commands and Features</strong>: Use slash commands and URL unfurling to streamline interactions and enrich content display from verified domains.</li>
 </ul>
 
 
@@ -83,8 +83,8 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="Project Setup" duration="5">
-        <p>This codelab provides the app&#39;s starter codebase. If you&#39;re starting from this step, let&#39;s first set up your development environment</p>
+      <google-codelab-step label="Set up the project" duration="5">
+        <p>This codelab provides a starter codebase for the application. Begin by setting up your development environment.</p>
 <ol type="1">
 <li>Clone the project and switch to the correct branch:</li>
 </ol>
@@ -100,7 +100,7 @@ git checkout step-0-task-manager
 npm run dev
 
 </code></pre>
-<p>You should now see the starter code and have a sample Task Manager application built with Next.js.</p>
+<p>You should now see the starter code, which includes a sample task manager application built with Next.js.</p>
 <h2 is-upgraded>Resources</h2>
 <ul>
 <li><a href="https://docs.github.com/en/get-started/git-basics/set-up-git" target="_blank">Set up Git</a></li>
@@ -111,9 +111,9 @@ npm run dev
     
       <google-codelab-step label="Overview: Supabase and Ngrok" duration="3">
         <h2 is-upgraded>Supabase</h2>
-<p>Supabase is an open-source alternative to Firebase that provides robust authentication and database storage capabilities.</p>
+<p>Supabase is an open-source backend-as-a-service platform that offers features such as authentication, real-time databases, and RESTful APIs. It serves as a scalable alternative to Firebase and simplifies backend integration for web applications.</p>
 <h2 is-upgraded>Ngrok</h2>
-<p>For local Zoom app development, we&#39;ll use Ngrok to create a secure HTTPS tunnel - this is required since Zoom apps must communicate over HTTPS for security purposes.</p>
+<p>Ngrok is a tunneling tool used to expose local servers to the internet via secure HTTPS endpoints. In Zoom app development, Ngrok enables local testing by providing a publicly accessible URL—necessary because Zoom requires all app endpoints to use HTTPS.</p>
 
 
       </google-codelab-step>
@@ -166,7 +166,7 @@ npm run dev
 
       </google-codelab-step>
     
-      <google-codelab-step label="Install or update the Supabase CLI" duration="5">
+      <google-codelab-step label="Install or update the Supabase CLI" duration="0">
         <p>If you see a lower version or you don&#39;t have the Supabase CLI installed, run the install command:</p>
 <pre><code language="language-bash" class="language-bash">brew install supabase/tap/supabase
 
@@ -195,16 +195,22 @@ npm run dev
 
       </google-codelab-step>
     
+      <google-codelab-step label="Seed DB with sample data" duration="5">
+        <p>TO-DO</p>
+
+
+      </google-codelab-step>
+    
       <google-codelab-step label="Start your Ngrok" duration="0">
-        <h2 is-upgraded>Configure Your ngrok Account:</h2>
-<ol type="1">
+        <h2 is-upgraded>1. Configure Your ngrok Account:</h2>
+<ul>
 <li>Sign up for a free ngrok account</li>
 <li>Obtain your authtoken from the ngrok dashboard</li>
-<li>Run the following command in your terminal, replacing YOUR_AUTH_TOKEN with your actual token:</li>
-</ol>
-<pre><code language="language-bash" class="language-bash">ngrok config add-authtoken YOUR_AUTH_TOKEN. 
+<li>Run the following command in your terminal, replacing YOUR_AUTH_TOKEN with your actual token:<pre><code language="language-bash" class="language-bash">ngrok config add-authtoken YOUR_AUTH_TOKEN. 
 </code></pre>
-<h2 is-upgraded>Start the ngrok Tunnel:</h2>
+</li>
+</ul>
+<h2 is-upgraded>2. Start the ngrok Tunnel:</h2>
 <p>Zoom Apps do not support localhost, and must be served over https. To develop locally, you need to tunnel traffic to this application via https, because the application runs in Docker containers serving traffic from http://localhost. You can use Ngrok to do this. Once installed you may run this command from your terminal:</p>
 <pre><code language="language-bash" class="language-bash">ngrok http 3000
 </code></pre>
@@ -212,8 +218,8 @@ npm run dev
 <p>Please copy the https origin from the Ngrok terminal output and paste it in the PUBLIC_URL value in the .env file.</p>
 <p class="image-container"><img alt="alt-text-here" src="img/ee15246f67294eb8.png"></p>
 <p>Please note that this ngrok URL will change once you restart ngrok (unless you purchased your own ngrok pro account). If you shut down your Ngrok (there&#39;s no harm to leaving it on), upon restart you&#39;ll need to copy and paste the new origin into the .env file AND also to your Marketplace build flow.</p>
-<h2 is-upgraded>Multiple Endpoints</h2>
-<p>Start multiple tunnels defined in the configuration file.</p>
+<h2 is-upgraded>3. Multiple Endpoints</h2>
+<p>The ngrok configuration file allows you to define multiple https tunnels. To start multiple tunnels defined in the configuration file, use the following command:</p>
 <pre><code language="language-bash" class="language-bash">ngrok start foo bar baz
 </code></pre>
 <p>For reference, here is an example version 3 ngrok configuration file setup with multiple tunnels:</p>
@@ -230,45 +236,49 @@ npm run dev
 
       </google-codelab-step>
     
-      <google-codelab-step label="Get Zoom App credentials and configure app" duration="0">
+      <google-codelab-step label="4. Get Zoom App credentials and configure app" duration="0">
         <p>In this section, you&#39;ll get credentials and configure an user-managed Zoom Marketplace General App.</p>
-<h2 is-upgraded>App Credentials</h2>
-<p><strong>Create Zoom Marketplace App</strong></p>
+<h2 is-upgraded>5. App Credentials</h2>
+<p><strong>1. Create Zoom Marketplace App</strong></p>
 <ul>
 <li>Go to marketplace.zoom.us.</li>
 <li>Click on Sign In at the top right to log in.</li>
 <li>Click Manage</li>
 <li>On the Manage App page, select the recently created &#34;Test Task Manager&#34; General App card</li>
 </ul>
-<p><strong>Under App credentials</strong></p>
+<p><strong>2. Under App credentials</strong></p>
 <ul>
 <li>Copy and save your Client ID.</li>
 <li>Copy and save your Client secret.</li>
 </ul>
-<p><strong>Under Redirect URL for OAuth</strong></p>
+<p><strong>3. Under Redirect URL for OAuth</strong></p>
 <ul>
 <li>Paste your Callback URL</li>
 </ul>
 <p>💡 <strong>Tip:</strong> your Ngrok origin = ie. https://9a20-38-99-100-7.ngrok.io</p>
 <pre><code language="language-bash" class="language-bash">&lt;your Ngrok origin&gt;/auth/v1/callback
 </code></pre>
-<p><strong>On the Surface page, under Select where to use your app</strong></p>
+<p><strong>4. On the Surface page, under Select where to use your app</strong></p>
 <ul>
 <li>Paste Home URL</li>
 </ul>
 <pre><code language="language-bash" class="language-bash">&lt;your Ngrok origin&gt;
 </code></pre>
-<p><strong>Under Domain Allow List</strong></p>
+<p><strong>5. Under Domain Allow List</strong></p>
 <ul>
 <li>Add your Ngrok domain only (no protocol, eg 9a20-38-99-100-7.ngrok.io)</li>
 <li>Add the SDK url appssdk.zoom.us in the Domain allow list</li>
 </ul>
-<p><strong>Under In-client App Features</strong></p>
+<p><strong>6. Under In-client App Features</strong></p>
 <ul>
 <li>Copy and save your Bot JID.</li>
 </ul>
 <p><strong>Important</strong>: All requests to domains NOT in the Domain allow list in the app&#39;s Marketplace build flow will be blocked in the Zoom Apps embedded browser</p>
 <p><strong>Information</strong> Please fill out the developer contact name and developer contact email fields to test the application locally. In order to submit the application for review, you will need to fill out the rest of the fields.</p>
+<h2 is-upgraded>Resources:</h2>
+<ul>
+<li>[To-Do]</li>
+</ul>
 
 
       </google-codelab-step>
@@ -301,9 +311,9 @@ npm run dev
       </google-codelab-step>
     
       <google-codelab-step label="Review the starter codebase" duration="8">
-        <p>In this section, you&#39;ll review a few areas of the app&#39;s starter codebase to which you&#39;ll add functionality in this codelab.</p>
+        <p>In this section, you will review key parts of the app&#39;s starter codebase where you will add functionality during the codelab.</p>
 <h2 is-upgraded>Folder and file structure</h2>
-<p>The following table contains an overview of the folder and file structure of the app:</p>
+<p>The table below provides an overview of the app&#39;s folder and file structure:</p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>Folders and Files</p>
 </td><td colspan="1" rowspan="1"><p>Description</p>
@@ -343,9 +353,9 @@ npm run dev
 </td></tr>
 </table>
 <h2 is-upgraded>Server and client components</h2>
-<p>The app is a Next.js web app that uses the App Router. Server rendering is used throughout the app. For example, the src/app/page.js file is a server component responsible for the main page. The src/components/tasks.jsx file is a client component denoted by the &#34;use client&#34; directive at the beginning of the file.</p>
+<p>The app is a Next.js web application that uses the App Router. Server rendering is applied throughout. For example, the src/app/page.js file is a server component that renders the main page. The src/components/tasks.jsx file is a client component, indicated by the &#34;use client&#34; directive at the top of the file.</p>
 <h2 is-upgraded>Mock data</h2>
-<p>This project uses Snaplet to seed the database. It leverages Large Language Models to generate more realistic data. When your database structure changes, you&#39;ll need to regenerate @snaplet/seed to maintain synchronization with the new structure. You can do this by running:</p>
+<p>This project uses Snaplet to seed the database with realistic mock data generated using large language models. If your database schema changes, you must regenerate @snaplet/seed to synchronize with the updated structure. Run the following command to regenerate:</p>
 <pre><code>npx @snaplet/seed sync
 npx tsx seed.ts &gt; supabase/seed.sql
 
@@ -361,8 +371,8 @@ npx tsx seed.ts &gt; supabase/seed.sql
 
       </google-codelab-step>
     
-      <google-codelab-step label="Conclusion" duration="0">
-        <p>Congratulations! You have now set up your Supabase, Ngrok, and local development environment.</p>
+      <google-codelab-step label="Next steps" duration="0">
+        <p>Congratulations! You have successfully set up your Supabase project, configured ngrok, and initialized your local development environment. Your app is now ready for integration with Zoom&#39;s platform features.</p>
 <h2 is-upgraded>Resources</h2>
 <ul>
 <li><a href="https://supabase.com/docs/guides/getting-started/quickstarts/nextjs" target="_blank">Use Supabase with Next.js</a></li>
