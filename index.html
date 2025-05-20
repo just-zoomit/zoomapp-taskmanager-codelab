@@ -233,27 +233,26 @@ npm run dev
     
       <google-codelab-step label="Get Zoom App credentials and configure app" duration="0">
         <p>In this section, you&#39;ll get credentials and configure an user-managed Zoom Marketplace General App.</p>
-<h2 is-upgraded>1. App Credentials</h2>
-<p><strong>1. Create Zoom Marketplace App</strong></p>
+<h2 is-upgraded>1. Create Zoom Marketplace App</h2>
 <ul>
 <li>Go to marketplace.zoom.us.</li>
 <li>Click on Sign In at the top right to log in.</li>
 <li>Click Manage</li>
 <li>On the Manage App page, select the recently created &#34;Test Task Manager&#34; General App card</li>
 </ul>
-<p><strong>2. Under App credentials</strong></p>
+<h2 is-upgraded>2. Under App credentials</h2>
 <ul>
 <li>Copy and save your Client ID.</li>
 <li>Copy and save your Client secret.</li>
 </ul>
-<p><strong>3. Under Redirect URL for OAuth</strong></p>
+<h2 is-upgraded>3. Under Redirect URL for OAuth</h2>
 <ul>
 <li>Paste your Supabase callback URL</li>
 </ul>
 <p>💡 <strong>Tip:</strong> your Ngrok origin = ie. https://9a20-38-99-100-7.ngrok.io</p>
 <pre><code language="language-bash" class="language-bash">&lt;your Ngrok origin&gt;/auth/v1/callback
 </code></pre>
-<p><strong>4. On the Surface page, under Select where to use your app</strong></p>
+<h2 is-upgraded>4. On the Surface page, under Select where to use your app</h2>
 <ul>
 <li>Add Image of Surface UI</li>
 <li>Paste Home URL</li>
@@ -263,12 +262,12 @@ npm run dev
 <p><strong>Note:</strong> When a user is redirected to a deep link or manually opens your app from the Zoom client, the Zoom client sends a <code>GET</code> request to your app&#39;s Home URL, as configured in the <strong>Information</strong> tab of your Zoom App. Upon receiving a successful response, the Zoom client renders the returned content within the app interface.</p>
 <p>This request includes the <code>X-Zoom-App-Context</code> header, which contains an AES-GCM–encrypted JSON payload. This payload includes details about the user and the context in which the app was launched.</p>
 <p>Your app must decrypt the <code>X-Zoom-App-Context</code> header to extract this contextual information. Once decrypted, the payload reveals user identifiers, meeting identifiers, and other relevant data about the app session. Learn more about <a href="###Resource" target="_blank">Zoom contextual data</a> below.</p>
-<p><strong>5. Under Domain Allow List</strong></p>
+<h2 is-upgraded>5. Under Domain Allow List</h2>
 <ul>
 <li>Add your Ngrok domain only (no protocol, eg 9a20-38-99-100-7.ngrok.io)</li>
 <li>Add the SDK url appssdk.zoom.us in the Domain allow list</li>
 </ul>
-<p><strong>6. Under In-client App Features</strong></p>
+<h2 is-upgraded>6. Under In-client App Features</h2>
 <ul>
 <li>Copy and save your Bot JID.</li>
 </ul>
