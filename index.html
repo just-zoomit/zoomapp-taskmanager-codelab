@@ -162,23 +162,31 @@ npm run dev
       </google-codelab-step>
     
       <google-codelab-step label="Install or update the Supabase CLI" duration="0">
-        <p>If you see a lower version or you don&#39;t have the Supabase CLI installed, run the install command:</p>
+        <ol type="1">
+<li>If you see a lower version or you don&#39;t have the Supabase CLI installed, run the install command:</li>
+</ol>
 <pre><code language="language-bash" class="language-bash">brew install supabase/tap/supabase
 
 </code></pre>
 <h2 is-upgraded>Running Supabase locally</h2>
-<p>Inside the folder where you want to create your project, run:</p>
+<ol type="1" start="2">
+<li>Inside the folder where you want to create your project, run:</li>
+</ol>
 <pre><code language="language-bash" class="language-bash">supabase init
 
 </code></pre>
 <p>This will create a new supabase folder. It&#39;s safe to commit this folder to your version control system.</p>
-<p>Now, to start the Supabase stack, run:</p>
+<ol type="1" start="3">
+<li>Now, to start the Supabase stack, run:</li>
+</ol>
 <pre><code>supabase start
 
 </code></pre>
 <p>This takes time on your first run because the CLI needs to download the Docker images to your local machine. The CLI includes the entire Supabase toolset, and a few additional images that are useful for local development (like a local SMTP server and a database diff tool).</p>
 <h2 is-upgraded>Log in to Supabase</h2>
-<p>Log in to the Supabase CLI and connect your Supabase account using your personal access token:</p>
+<ol type="1">
+<li>Log in to the Supabase CLI and connect your Supabase account using your personal access token:</li>
+</ol>
 <pre><code language="language-bash" class="language-bash">supabase login
 </code></pre>
 <h2 is-upgraded>Resources</h2>
@@ -255,13 +263,13 @@ npm run dev
 <h2 is-upgraded>4. On the Surface page, under Select where to use your app</h2>
 <ul>
 <li>Add Image of Surface UI</li>
-<li>Paste Home URL</li>
+<li>Paste Home URL:</li>
 </ul>
 <pre><code language="language-bash" class="language-bash">&lt;your Ngrok origin&gt;
 </code></pre>
-<p><strong>Note:</strong> When a user is redirected to a deep link or manually opens your app from the Zoom client, the Zoom client sends a <code>GET</code> request to your app&#39;s Home URL, as configured in the <strong>Information</strong> tab of your Zoom App. Upon receiving a successful response, the Zoom client renders the returned content within the app interface.</p>
+<p><strong>Note:</strong> When a user is redirected via a deep link or manually opens your app from the Zoom client, the Zoom client sends a <code>GET</code> request to your app&#39;s Home URL, as configured in the <strong>Information</strong> tab of your Zoom App. Upon receiving a successful response, the Zoom client renders the returned content within the app interface.</p>
 <p>This request includes the <code>X-Zoom-App-Context</code> header, which contains an AES-GCM–encrypted JSON payload. This payload includes details about the user and the context in which the app was launched.</p>
-<p>Your app must decrypt the <code>X-Zoom-App-Context</code> header to extract this contextual information. Once decrypted, the payload reveals user identifiers, meeting identifiers, and other relevant data about the app session. Learn more about <a href="###Resource" target="_blank">Zoom contextual data</a> below.</p>
+<p>Your app must decrypt the <code>X-Zoom-App-Context</code> header to extract this contextual information. Once decrypted, the payload reveals user identifiers, meeting identifiers, and other relevant data about the app session. Learn more about [Zoom contextual data](### Resources) below.</p>
 <h2 is-upgraded>5. Under Domain Allow List</h2>
 <ul>
 <li>Add your Ngrok domain only (no protocol, eg 9a20-38-99-100-7.ngrok.io)</li>
