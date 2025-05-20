@@ -270,7 +270,7 @@ npm run dev
 </code></pre>
 <p><strong>Note:</strong> When a user is redirected via a deep link or manually opens your app from the Zoom client, the Zoom client sends a <code>GET</code> request to your app&#39;s Home URL, as configured in the <strong>Information</strong> tab of your Zoom App. Upon receiving a successful response, the Zoom client renders the returned content within the app interface.</p>
 <p>This request includes the <code>X-Zoom-App-Context</code> header, which contains an AES-GCM–encrypted JSON payload. This payload includes details about the user and the context in which the app was launched.</p>
-<p>Your app must decrypt the <code>X-Zoom-App-Context</code> header to extract this contextual information. Once decrypted, the payload reveals user identifiers, meeting identifiers, and other relevant data about the app session. Learn more about [Zoom contextual data](### Resources) below.</p>
+<p>Your app must decrypt the <code>X-Zoom-App-Context</code> header to extract this contextual information. Once decrypted, the payload reveals user identifiers, meeting identifiers, and other relevant data about the app session. Learn more about <a href="###Resources" target="_blank">Zoom contextual data</a> below.</p>
 <h2 is-upgraded>5. Under Domain Allow List</h2>
 <ol type="1">
 <li>Add your Ngrok domain only (no protocol, eg 9a20-38-99-100-7.ngrok.io)</li>
