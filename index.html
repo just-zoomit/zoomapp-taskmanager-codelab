@@ -209,12 +209,17 @@ npm run dev
 <ul>
 <li>Sign up for a free ngrok account</li>
 <li>Obtain your authtoken from the ngrok dashboard</li>
+</ul>
+<ol type="1">
 <li>Run the following command in your terminal, replacing YOUR_AUTH_TOKEN with your actual token:<pre><code language="language-bash" class="language-bash">ngrok config add-authtoken YOUR_AUTH_TOKEN. 
 </code></pre>
 </li>
-</ul>
+</ol>
 <h2 is-upgraded>2. Start the ngrok Tunnel:</h2>
-<p>Zoom Apps do not support localhost, and must be served over https. To develop locally, you need to tunnel traffic to this application via https, because the application runs in Docker containers serving traffic from http://localhost. You can use Ngrok to do this. Once installed you may run this command from your terminal:</p>
+<p>Zoom Apps do not support localhost, and must be served over https. To develop locally, you need to tunnel traffic to this application via https, because the application runs in Docker containers serving traffic from http://localhost. You can use Ngrok to do this.</p>
+<ol type="1">
+<li>Once installed you may run this command from your terminal:</li>
+</ol>
 <pre><code language="language-bash" class="language-bash">ngrok http 3000
 </code></pre>
 <p>Ngrok will output the origin it has created for your tunnel, eg https://9a20-38-99-100-7.ngrok.io. You&#39;ll need to use this across your Zoom App configuration in the Zoom Marketplace (web) build flow (see below).</p>
@@ -222,7 +227,9 @@ npm run dev
 <p class="image-container"><img alt="alt-text-here" src="img/ee15246f67294eb8.png"></p>
 <p>Please note that this ngrok URL will change once you restart ngrok (unless you purchased your own ngrok pro account). If you shut down your Ngrok (there&#39;s no harm to leaving it on), upon restart you&#39;ll need to copy and paste the new origin into the .env file AND also to your Marketplace build flow.</p>
 <h2 is-upgraded>3. Multiple Endpoints</h2>
-<p>The ngrok configuration file allows you to define multiple https tunnels. To start multiple tunnels defined in the configuration file, use the following command:</p>
+<ol type="1">
+<li>The ngrok configuration file allows you to define multiple https tunnels. To start multiple tunnels defined in the configuration file, use the following command:</li>
+</ol>
 <pre><code language="language-bash" class="language-bash">ngrok start foo bar baz
 </code></pre>
 <p>For reference, here is an example version 3 ngrok configuration file setup with multiple tunnels:</p>
