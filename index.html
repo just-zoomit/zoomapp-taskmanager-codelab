@@ -218,10 +218,10 @@ npm run dev
 <h2 is-upgraded>2. Start the ngrok Tunnel:</h2>
 <p>Zoom Apps do not support localhost, and must be served over https. To develop locally, you need to tunnel traffic to this application via https, because the application runs in Docker containers serving traffic from http://localhost. You can use Ngrok to do this.</p>
 <ol type="1">
-<li>Once installed you may run this command from your terminal:</li>
-</ol>
-<pre><code language="language-bash" class="language-bash">ngrok http 3000
+<li>Once installed you may run this command from your terminal:<pre><code language="language-bash" class="language-bash">ngrok http 3000
 </code></pre>
+</li>
+</ol>
 <p>Ngrok will output the origin it has created for your tunnel, eg https://9a20-38-99-100-7.ngrok.io. You&#39;ll need to use this across your Zoom App configuration in the Zoom Marketplace (web) build flow (see below).</p>
 <ol type="1" start="2">
 <li>Please copy the https origin from the Ngrok terminal output and paste it in the PUBLIC_URL value in the .env file.</li>
