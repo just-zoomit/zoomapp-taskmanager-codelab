@@ -3,7 +3,7 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2025-05-20T16:26:03-04:00",
+  "updated": "2025-05-21T16:10:23-04:00",
   "id": "how-to-setup-a-zoomapp-nextjs",
   "duration": 28,
   "title": "Setup development environment: Zoom, Ngrok, and Supabase developer accounts.",
